@@ -190,32 +190,6 @@
     ],
     "provisioners": [
         {
-            "type": "file",
-            "only": [
-                "minimal-centos-6.9-virtualbox",
-                "minimal-centos-6.9-vmware"
-            ],
-            "source": "{{ template_dir }}/scripts/retry.sh",
-            "destination": "/tmp/retry.sh"
-        },
-        {
-            "type": "shell",
-            "only": [
-                "minimal-centos-6.9-virtualbox",
-                "minimal-centos-6.9-vmware"
-            ],
-            "execute_command": "echo 'vagrant'|sudo -S -E /bin/sh -ex '{{ .Path }}'",
-            "scripts": [
-                "{{ template_dir }}/scripts/base.sh",
-                "{{ template_dir }}/scripts/virtualbox.sh",
-                "{{ template_dir }}/scripts/vmware.sh",
-                "{{ template_dir }}/scripts/vagrant.sh",
-                "{{ template_dir }}/scripts/dep.sh",
-                "{{ template_dir }}/scripts/cleanup.sh",
-                "{{ template_dir }}/scripts/zerodisk.sh"
-            ]
-        },
-        {
             "type": "shell",
             "only": [
                 "minimal-centos-7.3-hvm",
@@ -314,34 +288,6 @@
                 "files": [
                     ".spel/{{ user `spel_identifier` }}-{{ build_name }}-{{ user `spel_version` }}.manifest"
                 ]
-            }
-        ],
-        [
-            {
-                "type": "vagrant",
-                "only": [
-                    "minimal-centos-6.9-virtualbox",
-                    "minimal-centos-6.9-vmware"
-                ],
-                "compression_level": 9,
-                "keep_input_artifact": false,
-                "output": ".spel/{{ user `spel_identifier` }}-{{ .BuildName }}-{{ user `spel_version` }}.box"
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [ "minimal-centos-6.9-virtualbox" ],
-                "access_token": "{{ user `vagrantcloud_token` }}",
-                "box_tag": "{{ user `vagrantcloud_username` }}/{{ user `spel_identifier` }}-minimal-centos-6.9",
-                "version": " {{ user `spel_version` }} ",
-                "version_description": "This is a STIG-partitioned, LVM-enabled, \"minimal\" CentOS 6.9 Image. This image contains updates through {{ isotime \"2006-01-02\" }}. For details, see https://github.com/plus3it/spel."
-            },
-            {
-                "type": "vagrant-cloud",
-                "only": [ "minimal-centos-6.9-vmware" ],
-                "access_token": "{{ user `vagrantcloud_token` }}",
-                "box_tag": "{{ user `vagrantcloud_username` }}/{{ user `spel_identifier` }}-minimal-centos-6.9",
-                "version": "{{ user `spel_version` }}",
-                "version_description": "This is a STIG-partitioned, LVM-enabled, \"minimal\" CentOS 6.9 Image. This image contains updates through {{ isotime \"2006-01-02\" }}. For details, see https://github.com/plus3it/spel."
             }
         ]
     ]
