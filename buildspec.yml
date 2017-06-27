@@ -13,7 +13,7 @@ phases:
       - echo `ls`
       - echo "Validating amazon-linux_packer-template.json"
       - spel_version=chris
-      - ./packer validate spel/minimal-linux.json
+      - ./packer validate spel/chris-minimal.json
   build:
     commands:
       - aws configure set region $AWS_REGION
