@@ -7,7 +7,7 @@ phases:
       - echo "Installing unzip............"
       - apt -y install unzip
       - echo "Installing HashiCorp Packer..."
-      - curl -L https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip -o ~/packer.zip && unzip ~/packer.zip && chmod 755 ~/packer
+      - curl -L https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip -o ~/packer.zip && unzip ~/packer.zip
       - echo "Installing SPEL"
       - git clone https://github.com/chriswvu/spel && cd spel
       - echo "Validating amazon-linux_packer-template.json"
