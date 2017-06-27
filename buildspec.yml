@@ -9,8 +9,6 @@ phases:
       - echo "Installing HashiCorp Packer..."
       - echo `pwd`
       - curl -L https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip -o packer.zip && unzip packer.zip
-      - echo `pwd`
-      - echo `ls`
       - echo "Validating amazon-linux_packer-template.json"
       - spel_version=chris
       - ./packer validate spel/chris-minimal.json
@@ -18,7 +16,7 @@ phases:
     commands:
       - aws configure set region $AWS_REGION
       - echo "Building HashiCorp Packer template, spel/minimal-linux.json"
-      - packer build -only "minimal-centos-7.3-hvm" -var "spel_identifier=spel" -var "spel_version=$spel_version" -var "aws_region=us-east-1" -var "source_ami_centos7_hvm=ami-650a1672" -var "spel_extrarpms=https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"     spel/minimal-linux.json
+      - ./packer build -only "minimal-centos-7.3-hvm" -var "spel_identifier=spel" -var "spel_version=$spel_version" -var "aws_region=us-east-1" -var "source_ami_centos7_hvm=ami-650a1672" -var "spel_extrarpms=https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"     spel/minimal-linux.json
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
