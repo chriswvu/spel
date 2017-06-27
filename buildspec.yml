@@ -5,8 +5,8 @@ phases:
   pre_build:
     commands:
       - echo "Installing unzip............"
-	  - apt -y install unzip
-	  - echo "Installing HashiCorp Packer..."
+      - apt -y install unzip
+      - echo "Installing HashiCorp Packer..."
       - curl -L https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip -o ~/packer.zip && unzip ~/packer.zip && chmod 755 ~/packer
       - echo "Installing SPEL"
       - git clone https://github.com/chriswvu/spel && cd spel
